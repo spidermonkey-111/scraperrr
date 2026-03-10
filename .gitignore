@@ -1,6 +1,8 @@
 # ── Secrets & Environment ──────────────────────────────────────
 .env
-*.env.*
+.env.local
+.env.production
+# .env.example is intentionally NOT ignored — it's a safe template
 
 # ── Ephemeral scraper output ──────────────────────────────────
 .tmp/
