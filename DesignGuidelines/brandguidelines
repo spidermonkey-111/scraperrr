@@ -1,0 +1,21 @@
+Colors
+Primary:
+#BFF549
+Accent:
+#BFF549
+Background:
+#0D0D0D
+Text Primary:
+#0D0D0D
+Link:
+#0000EE
+Fonts
+Inter(body)
+Geist Mono(monospace)
+Aspekta(heading)
+Typography
+primary: Inter
+heading: Aspekta
+h1: 76px
+h2: 52px
+body: 16px

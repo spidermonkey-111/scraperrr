@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scraperrr — AI Intelligence Hub</title>
+  <meta name="description"
+    content="Your daily AI intelligence hub. Latest news from Ben's Bites, The AI Rundown, and Reddit — curated every 24 hours." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <!-- Aspekta via CDN (local @font-face fallback to Inter if unavailable) -->
+  <style>
+    @font-face {
+      font-family: 'Aspekta';
+      src: url('https://cdn.jsdelivr.net/npm/aspekta@1.0.0/fonts/Aspekta-700.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Aspekta';
+      src: url('https://cdn.jsdelivr.net/npm/aspekta@1.0.0/fonts/Aspekta-500.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+  </style>
+
+  <link rel="stylesheet" href="style.css?v=20260309" />
+</head>
+
+<body>
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <span class="logo-mark" aria-hidden="true">⚡</span>
+      <span class="logo-text">Scraperrr</span>
+    </div>
+
+    <!-- Nav items -->
+    <nav class="sidebar-nav">
+      <ul class="nav-list" role="list">
+        <li class="nav-item">
+          <button class="nav-btn active" data-filter="all" aria-pressed="true">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+              </svg>
+            </span>
+            <span class="nav-label">All Feed</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-filter="saved" aria-pressed="false">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+              </svg>
+            </span>
+            <span class="nav-label">Saved</span>
+            <span class="nav-badge" id="nav-saved-count" hidden>0</span>
+          </button>
+        </li>
+
+        <div class="nav-divider" role="separator"><span class="nav-divider-label">Sources</span></div>
+
+        <li class="nav-item">
+          <button class="nav-btn" data-filter="Ben's Bites" aria-pressed="false">
+            <span class="nav-icon nav-icon--source" aria-hidden="true">🍪</span>
+            <span class="nav-label">Ben's Bites</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-filter="The AI Rundown" aria-pressed="false">
+            <span class="nav-icon nav-icon--source" aria-hidden="true">⚡</span>
+            <span class="nav-label">AI Rundown</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-filter="Reddit" aria-pressed="false">
+            <span class="nav-icon nav-icon--source" aria-hidden="true">🤖</span>
+            <span class="nav-label">Reddit</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <div class="status-row" id="status-row" role="status" aria-live="polite">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="status-text" id="status-text">Loading...</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Mobile Header ── -->
+  <header class="mobile-header" role="banner">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false"
+      aria-controls="sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="mobile-logo">Scraperrr</span>
+    <button class="btn-refresh btn-refresh--sm" id="btn-refresh-mobile" aria-label="Refresh">
+      <svg class="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10" />
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Sidebar Overlay (mobile) ── -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- ── Main Wrapper ── -->
+  <div class="app-shell">
+
+    <!-- ── Main Panel ── -->
+    <main class="main-panel" id="main-content" role="main">
+
+      <!-- Top Bar -->
+      <div class="topbar">
+        <div class="topbar-left">
+          <h2 class="page-title" id="page-title">All Feed</h2>
+          <span class="page-subtitle" id="page-subtitle">Last 24 hours</span>
+        </div>
+        <div class="topbar-right">
+          <div class="search-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="search" class="search-input" id="search-input" placeholder="Search articles..."
+              aria-label="Search articles" autocomplete="off" />
+          </div>
+          <button class="btn-refresh" id="btn-refresh" aria-label="Refresh articles">
+            <svg class="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+            </svg>
+            <span>Refresh</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed -->
+      <div class="feed-area">
+
+        <!-- Skeleton -->
+        <div class="skeleton-grid" id="skeleton-loader" role="status" aria-label="Loading articles">
+          <div class="skeleton-card" aria-hidden="true">
+            <div class="sk sk-source"></div>
+            <div class="sk sk-title"></div>
+            <div class="sk sk-title sk-w70"></div>
+            <div class="sk sk-body"></div>
+            <div class="sk sk-body sk-w60"></div>
+            <div class="sk sk-footer"></div>
+          </div>
+          <div class="skeleton-card" aria-hidden="true">
+            <div class="sk sk-source"></div>
+            <div class="sk sk-title"></div>
+            <div class="sk sk-title sk-w80"></div>
+            <div class="sk sk-body"></div>
+            <div class="sk sk-body sk-w50"></div>
+            <div class="sk sk-footer"></div>
+          </div>
+          <div class="skeleton-card" aria-hidden="true">
+            <div class="sk sk-source"></div>
+            <div class="sk sk-title"></div>
+            <div class="sk sk-title sk-w65"></div>
+            <div class="sk sk-body"></div>
+            <div class="sk sk-body sk-w55"></div>
+            <div class="sk sk-footer"></div>
+          </div>
+          <div class="skeleton-card" aria-hidden="true">
+            <div class="sk sk-source"></div>
+            <div class="sk sk-title"></div>
+            <div class="sk sk-title sk-w75"></div>
+            <div class="sk sk-body"></div>
+            <div class="sk sk-body sk-w45"></div>
+            <div class="sk sk-footer"></div>
+          </div>
+        </div>
+
+        <!-- Saved Section -->
+        <section id="saved-section" aria-labelledby="saved-heading" hidden>
+          <div class="feed-section-header">
+            <h3 class="feed-section-title" id="saved-heading">🔖 Saved Articles</h3>
+            <button class="btn-ghost btn-clear" id="btn-clear-saved">Clear all</button>
+          </div>
+          <div class="articles-grid" id="saved-grid" role="list" aria-label="Saved articles"></div>
+        </section>
+
+        <!-- Main Feed Section -->
+        <section id="feed-section" aria-labelledby="feed-heading" hidden>
+          <div class="feed-section-header">
+            <h3 class="feed-section-title" id="feed-heading">
+              Latest
+              <span class="feed-badge" id="feed-count" aria-label="Article count"></span>
+            </h3>
+          </div>
+          <div class="articles-grid" id="feed-grid" role="list" aria-label="Latest articles"></div>
+        </section>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">🛸</div>
+          <h3 class="empty-title">No articles found</h3>
+          <p class="empty-desc">Run the scraper to fetch fresh content, or adjust your filters.</p>
+          <button class="btn-primary" id="btn-refresh-empty">Reload Data</button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ── Right Stats Panel ── -->
+    <aside class="stats-panel" role="complementary" aria-label="Statistics">
+      <div class="stats-panel-inner">
+
+        <div class="stats-card">
+          <p class="stats-label">Total Articles</p>
+          <p class="stats-value" id="stat-total-val">—</p>
+        </div>
+
+        <div class="stats-card">
+          <p class="stats-label">Saved</p>
+          <p class="stats-value stats-value--accent" id="stat-saved-val">0</p>
+        </div>
+
+        <div class="stats-card">
+          <p class="stats-label">Sources Active</p>
+          <p class="stats-value">3</p>
+        </div>
+
+        <div class="stats-card">
+          <p class="stats-label">Last Fetch</p>
+          <p class="stats-value stats-value--sm" id="stat-age-val">—</p>
+        </div>
+
+        <div class="sources-list">
+          <p class="stats-label" style="margin-bottom:12px">Sources</p>
+          <div class="source-pill">
+            <span class="source-pill-dot" style="background:#ff9843"></span>
+            <span>Ben's Bites</span>
+          </div>
+          <div class="source-pill">
+            <span class="source-pill-dot" style="background:#FF2D78"></span>
+            <span>The AI Rundown</span>
+          </div>
+          <div class="source-pill">
+            <span class="source-pill-dot" style="background:#ff4500"></span>
+            <span>Reddit</span>
+          </div>
+        </div>
+
+        <p class="next-refresh-label">Next refresh</p>
+        <p class="next-refresh-val" id="next-refresh-val">—</p>
+
+        <!-- ── Contributors / Animated Tooltip ── -->
+        <div class="contributors-section" id="contributors-section">
+          <p class="contributors-label">Built by</p>
+          <div class="animated-tooltip-wrap" id="animated-tooltip-wrap"></div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div><!-- /app-shell -->
+
+  <!-- ── Toast Container ── -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ── Article Card Template ── -->
+  <template id="card-template">
+    <article class="article-card" role="listitem">
+      <div class="card-source-bar">
+        <div class="card-source-info">
+          <span class="card-source-icon" aria-hidden="true"></span>
+          <span class="card-source-name"></span>
+        </div>
+        <button class="btn-save" aria-label="Save article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="card-image-wrapper" hidden>
+        <img class="card-image" alt="" loading="lazy" />
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-title"></h3>
+        <p class="card-summary"></p>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-meta">
+          <span class="card-time"></span>
+          <div class="card-reddit-stats" hidden>
+            <span class="reddit-score">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="11" height="11" aria-hidden="true">
+                <path d="M12 4l1.5 4.5h4.5l-3.7 2.7 1.4 4.3L12 13l-3.7 2.5 1.4-4.3L6 8.5h4.5z" />
+              </svg>
+            </span>
+            <span class="reddit-comments">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"
+                aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+          Read
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" width="11" height="11" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
+        </a>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
