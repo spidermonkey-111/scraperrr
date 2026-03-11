@@ -70,6 +70,14 @@ def strip_html(text: str) -> str:
     return clean.strip()[:500]
 
 
+def extract_first_image(html: str) -> Optional[str]:
+    """Pull the first <img src=...> out of raw HTML (newsletter content)."""
+    if not html:
+        return None
+    m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', html, re.IGNORECASE)
+    return m.group(1) if m else None
+
+
 def is_within_window(pub_dt: datetime, hours: int = TIME_WINDOW_HOURS) -> bool:
     cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
     if pub_dt.tzinfo is None:
@@ -136,9 +144,22 @@ def _scrape_rss(source: dict) -> list[dict]:
                 "reddit_comments": None,
                 "is_saved": False,
             }
+            # 1. media:thumbnail tag (some feeds)
             media = entry.get("media_thumbnail", [])
             if media:
                 article["image_url"] = media[0].get("url")
+            # 2. enclosure / link with image mime type
+            if not article["image_url"]:
+                for lnk in entry.get("links", []):
+                    if lnk.get("type", "").startswith("image"):
+                        article["image_url"] = lnk.get("href")
+                        break
+            # 3. first <img> inside RSS HTML content (newsletters)
+            if not article["image_url"]:
+                raw_html = entry.get("summary", "") or (
+                    entry.get("content", [{}])[0].get("value", "")
+                )
+                article["image_url"] = extract_first_image(raw_html)
             articles.append(article)
         except Exception:
             continue
