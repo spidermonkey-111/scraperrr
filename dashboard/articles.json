@@ -1,12 +1,12 @@
 {
-  "scraped_at": "2026-03-11T15:20:57.790401+00:00",
+  "scraped_at": "2026-03-11T15:23:24.696687+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
     "Reddit/r/artificial",
     "Reddit/r/MachineLearning"
   ],
-  "total_articles": 8,
+  "total_articles": 6,
   "articles": [
     {
       "id": "67e05d6954dab21a",
@@ -20,24 +20,7 @@
         "AI",
         "Newsletter"
       ],
-      "image_url": null,
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "a8ea8c32978b3d0a",
-      "title": "Just use GPT-5.4 xhigh",
-      "summary": "workshop recording inside",
-      "url": "https://www.bensbites.com/p/just-use-gpt-54-xhigh",
-      "published_at": "2026-03-10T14:25:37+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": null,
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/67143989-068a-4473-8d71-07175c1faa7a/ami.jpg",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -54,7 +37,7 @@
         "AI",
         "Newsletter"
       ],
-      "image_url": null,
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/56daeeb5-61e7-4099-af57-2eda7c26db80/anthropicsue.jpg",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -71,7 +54,7 @@
         "AI",
         "Newsletter"
       ],
-      "image_url": null,
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/3d3763a5-c7d6-4638-9089-53184a84d3e0/1772993767510.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -88,7 +71,7 @@
         "AI",
         "Newsletter"
       ],
-      "image_url": null,
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/c005db92-d909-4550-85c1-cb41038ba088/2026_Rovo_cover.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -105,24 +88,7 @@
         "AI",
         "Newsletter"
       ],
-      "image_url": null,
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "f4b642e85b76e4ab",
-      "title": "Google apps in the terminal",
-      "summary": "two new models, lot of rumours and revenue",
-      "url": "https://www.bensbites.com/p/google-apps-in-the-terminal",
-      "published_at": "2026-03-05T14:15:58+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": null,
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/84c5451b-1fa8-4391-95b6-ead4f84a5974/gpt54.jpg",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -139,7 +105,7 @@
         "AI",
         "Newsletter"
       ],
-      "image_url": null,
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/2972a479-c1ae-4d52-9e5f-77dc85fd82c7/Dario_Amodei_Fire_Writing_Illustrated.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
