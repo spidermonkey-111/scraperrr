@@ -2,8 +2,10 @@
 """
 Scraperrr — tools/modal_scraper.py
 ====================================
-Modal cloud job: runs the scraper every 24 hours and pushes the
-resulting articles.json to GitHub so Vercel always serves fresh data.
+Modal cloud job:
+  • Scheduled: runs every day at 07:00 UTC (scrape_and_push)
+  • On-demand:  HTTP GET /trigger → scrapes + returns fresh JSON
+                Called by the dashboard Refresh button on Vercel.
 
 Deploy:   python -m modal deploy tools/modal_scraper.py
 Run now:  python -m modal run tools/modal_scraper.py::scrape_and_push
@@ -25,35 +27,39 @@ import modal
 # ── Modal App ─────────────────────────────────────────────────────────────────
 app = modal.App("scraperrr-scraper")
 
-# Docker image with all required deps
 image = (
     modal.Image.debian_slim(python_version="3.11")
     .pip_install(
         "feedparser>=6.0.11",
         "praw>=7.7.1",
         "requests>=2.31.0",
+        "fastapi>=0.110.0",
     )
 )
 
-# ── Secrets (set these in Modal dashboard → Secrets) ──────────────────────────
-# Required:  GITHUB_TOKEN   — fine-grained PAT with Contents: Read & Write
-# Required:  GITHUB_REPO    — e.g.  spidermonkey-111/scraperrr
-# Optional:  REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT
 modal_secrets = modal.Secret.from_name("scraperrr-secrets")
 
-
-# ── Constants (same as scraper.py) ────────────────────────────────────────────
+# ── Constants ─────────────────────────────────────────────────────────────────
 RSS_SOURCES = [
     {"name": "Ben's Bites",    "url": "https://bensbites.substack.com/feed",          "icon": "🍪", "tags": ["AI", "Newsletter"]},
     {"name": "The AI Rundown", "url": "https://rss.beehiiv.com/feeds/2R3C6Bt5wj.xml", "icon": "⚡", "tags": ["AI", "Newsletter"]},
 ]
 REDDIT_SUBREDDITS  = ["artificial", "MachineLearning"]
 REDDIT_POST_LIMIT  = 25
-TIME_WINDOW_HOURS  = 168   # 7 days — newsletters publish a few times per week
-GITHUB_FILE_PATH   = "dashboard/articles.json"   # path inside the repo
+TIME_WINDOW_HOURS  = 168
+GITHUB_FILE_PATH   = "dashboard/articles.json"
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
+def _setup_logging():
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        datefmt="%H:%M:%S",
+    )
+    return logging.getLogger("scraperrr")
+
 
 def sha256_id(url: str) -> str:
     return hashlib.sha256(url.encode()).hexdigest()[:16]
@@ -75,8 +81,7 @@ def feedparser_date_to_dt(time_struct) -> Optional[datetime]:
     if time_struct is None:
         return None
     try:
-        ts = time.mktime(time_struct)
-        return datetime.fromtimestamp(ts, tz=timezone.utc)
+        return datetime.fromtimestamp(time.mktime(time_struct), tz=timezone.utc)
     except Exception:
         return None
 
@@ -92,9 +97,9 @@ def deduplicate(articles: list[dict]) -> list[dict]:
 # ── Scrapers ──────────────────────────────────────────────────────────────────
 
 def _scrape_rss(source: dict) -> list[dict]:
-    import feedparser  # inside image
-    articles = []
+    import feedparser
     log = logging.getLogger("scraperrr.rss")
+    articles = []
     log.info(f"RSS → {source['name']}")
     try:
         feed = feedparser.parse(source["url"])
@@ -143,18 +148,16 @@ def _scrape_rss(source: dict) -> list[dict]:
 
 
 def _scrape_reddit() -> list[dict]:
-    import praw  # inside image
+    import praw
     log = logging.getLogger("scraperrr.reddit")
     articles = []
-
     client_id     = os.environ.get("REDDIT_CLIENT_ID", "")
     client_secret = os.environ.get("REDDIT_CLIENT_SECRET", "")
     user_agent    = os.environ.get("REDDIT_USER_AGENT", "Scraperrr/1.0")
 
     if not client_id or client_id == "your_reddit_client_id_here":
-        log.warning("Reddit creds not set — skipping Reddit.")
+        log.warning("Reddit creds not set — skipping.")
         return []
-
     try:
         reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
     except Exception as e:
@@ -194,37 +197,28 @@ def _scrape_reddit() -> list[dict]:
 # ── GitHub Push ───────────────────────────────────────────────────────────────
 
 def _push_to_github(payload: dict) -> None:
-    """Commit articles.json to GitHub via the Contents API."""
-    import requests  # inside image
+    import requests
     log = logging.getLogger("scraperrr.github")
-
-    token = os.environ["GITHUB_TOKEN"]
-    repo  = os.environ["GITHUB_REPO"]   # e.g. spidermonkey-111/scraperrr
-    path  = GITHUB_FILE_PATH
-
-    api_url = f"https://api.github.com/repos/{repo}/contents/{path}"
-    headers = {
-        "Authorization": f"token {token}",
-        "Accept":        "application/vnd.github+json",
+    token    = os.environ["GITHUB_TOKEN"]
+    repo     = os.environ["GITHUB_REPO"]
+    api_url  = f"https://api.github.com/repos/{repo}/contents/{GITHUB_FILE_PATH}"
+    headers  = {
+        "Authorization":        f"token {token}",
+        "Accept":               "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
     }
-
-    # Get current file SHA (required for updates)
     sha = None
     r = requests.get(api_url, headers=headers, timeout=15)
     if r.status_code == 200:
         sha = r.json().get("sha")
-        log.info(f"  Existing file SHA: {sha[:8]}...")
     elif r.status_code != 404:
         r.raise_for_status()
 
-    content_b64 = base64.b64encode(
-        json.dumps(payload, indent=2, ensure_ascii=False).encode("utf-8")
-    ).decode("ascii")
-
     body: dict = {
-        "message": f"chore: auto-update articles.json [{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}]",
-        "content": content_b64,
+        "message": f"chore: auto-update articles [{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}]",
+        "content": base64.b64encode(
+            json.dumps(payload, indent=2, ensure_ascii=False).encode()
+        ).decode("ascii"),
         "branch":  "main",
     }
     if sha:
@@ -232,31 +226,15 @@ def _push_to_github(payload: dict) -> None:
 
     r = requests.put(api_url, headers=headers, json=body, timeout=30)
     r.raise_for_status()
-    log.info(f"  ✅ Pushed {payload['total_articles']} articles to GitHub ({repo}/{path})")
+    log.info(f"  ✅ Pushed {payload['total_articles']} articles → GitHub ({GITHUB_FILE_PATH})")
 
 
-# ── Modal Scheduled Function ───────────────────────────────────────────────────
+# ── Core scrape logic (shared by both functions) ──────────────────────────────
 
-@app.function(
-    image=image,
-    secrets=[modal_secrets],
-    schedule=modal.Cron("0 7 * * *"),   # 07:00 UTC daily (adjust to taste)
-    timeout=300,
-)
-def scrape_and_push():
-    """Runs every 24 hours: scrape RSS + Reddit → push articles.json to GitHub."""
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        datefmt="%H:%M:%S",
-    )
-    log = logging.getLogger("scraperrr")
+def _run_scrape() -> dict:
+    log = _setup_logging()
     start = time.time()
-
-    log.info("=" * 60)
-    log.info("🚀 Scraperrr Modal Job — Starting")
-    log.info(f"   Time window: last {TIME_WINDOW_HOURS}h")
-    log.info("=" * 60)
+    log.info("🚀 Scraperrr — Starting scrape")
 
     all_articles: list[dict] = []
     sources_checked: list[str] = []
@@ -280,22 +258,54 @@ def scrape_and_push():
         "articles":        unique,
     }
 
-    log.info(f"📦 {len(unique)} unique articles from {len(sources_checked)} sources")
-
+    log.info(f"📦 {len(unique)} unique articles, pushing to GitHub...")
     _push_to_github(payload)
+    log.info(f"✅ Done in {time.time() - start:.1f}s")
+    return payload
 
-    elapsed = time.time() - start
-    log.info(f"✅ Done in {elapsed:.1f}s")
+
+# ── 1. Scheduled job — runs daily at 07:00 UTC ───────────────────────────────
+
+@app.function(
+    image=image,
+    secrets=[modal_secrets],
+    schedule=modal.Cron("0 7 * * *"),
+    timeout=300,
+)
+def scrape_and_push():
+    """Daily cron: scrape + push to GitHub."""
+    _run_scrape()
 
 
-# ── Local entry-point ──────────────────────────────────────────────────────────
+# ── 2. Web endpoint — Refresh button on Vercel calls this ─────────────────────
+
+@app.function(
+    image=image,
+    secrets=[modal_secrets],
+    timeout=300,
+)
+@modal.web_endpoint(method="GET", label="trigger")
+def trigger_scrape():
+    """
+    On-demand HTTP endpoint. Dashboard Refresh button calls this.
+    Returns full articles payload so the dashboard can update immediately
+    without waiting for a Vercel redeploy.
+    CORS headers allow calls from any Vercel domain.
+    """
+    from fastapi.responses import JSONResponse
+    payload = _run_scrape()
+    return JSONResponse(
+        content={"ok": True, **payload},
+        headers={"Access-Control-Allow-Origin": "*"},
+    )
+
+
+# ── Local smoke-test ──────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    # Quick local smoke-test (does NOT push to GitHub)
-    import sys
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+    _setup_logging()
     log = logging.getLogger("scraperrr")
-    log.info("Running locally (no GitHub push)...")
+    log.info("Local mode — scraping RSS only (no Reddit, no GitHub push)")
     articles = []
     for s in RSS_SOURCES:
         articles.extend(_scrape_rss(s))
-    log.info(f"Total: {len(articles)} articles (Reddit skipped in local mode)")
+    log.info(f"Total: {len(articles)} articles")

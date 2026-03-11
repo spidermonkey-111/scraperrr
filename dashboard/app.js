@@ -10,7 +10,12 @@
 // Locally:   serve from .tmp/articles.json via Python server
 const IS_LOCAL = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
 const DATA_URL = IS_LOCAL ? '/.tmp/articles.json' : '/articles.json';
-const SCRAPER_URL = '/run-scraper';
+
+// On Vercel: call Modal web endpoint (scrapes live + returns fresh JSON)
+// Locally:   call local Python server
+const SCRAPER_URL = IS_LOCAL
+    ? '/run-scraper'
+    : 'https://spidermonkey-111--trigger.modal.run';
 const LS_KEY = 'scraperrr_v1';
 const REFRESH_MS = 24 * 60 * 60 * 1000;
 const STALE_MS = 24 * 60 * 60 * 1000;
@@ -368,14 +373,10 @@ function attachEvents() {
     els.hamburger?.addEventListener('click', toggleSidebar);
     els.overlay?.addEventListener('click', closeSidebar);
 
-    // Refresh buttons — trigger a real scrape via server (local only)
+    // Refresh buttons — local calls /run-scraper, Vercel calls Modal endpoint
     const doRefresh = async () => {
-        if (!IS_LOCAL) {
-            toast('🖥️', 'Run python server.py locally to refresh data', 5000);
-            return;
-        }
         showSkeleton(true);
-        const ok = await fetchArticles(true); // true = call /run-scraper
+        const ok = await fetchArticles(true);
         showSkeleton(false);
         if (ok) { render(); updateStats(); }
     };
