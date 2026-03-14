@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-03-13T07:00:03.442394+00:00",
+  "scraped_at": "2026-03-14T07:00:03.932192+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
@@ -8,6 +8,23 @@
   ],
   "total_articles": 6,
   "articles": [
+    {
+      "id": "5a408706d62e4972",
+      "title": "Google brings Gemini to the road",
+      "summary": "PLUS: Automate Gmail with Google Workspace Studio",
+      "url": "https://www.therundown.ai/p/google-brings-gemini-to-the-road",
+      "published_at": "2026-03-13T10:00:00+00:00",
+      "source": "The AI Rundown",
+      "source_icon": "⚡",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/0f73aaa3-f4bc-455a-816c-65d4fc2c3ff3/Untitled_design__3_.png",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
     {
       "id": "95bbb87d723767a9",
       "title": "Perplexity's new answer to OpenClaw",
@@ -89,23 +106,6 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/c005db92-d909-4550-85c1-cb41038ba088/2026_Rovo_cover.png",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "62c5f11f9f6e983e",
-      "title": "OpenAI's 'best model ever' goes live",
-      "summary": "PLUS: Turn an investment memo into a polished slide deck",
-      "url": "https://www.therundown.ai/p/openais-best-model-ever-goes-live",
-      "published_at": "2026-03-06T10:00:00+00:00",
-      "source": "The AI Rundown",
-      "source_icon": "⚡",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/84c5451b-1fa8-4391-95b6-ead4f84a5974/gpt54.jpg",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
