@@ -1,13 +1,30 @@
 {
-  "scraped_at": "2026-03-21T07:00:04.632845+00:00",
+  "scraped_at": "2026-03-22T07:00:05.541896+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
     "Reddit/r/artificial",
     "Reddit/r/MachineLearning"
   ],
-  "total_articles": 5,
+  "total_articles": 9,
   "articles": [
+    {
+      "id": "e023732689dd8f6b",
+      "title": "Ben's Builds: #2",
+      "summary": "my stack, instructions, tools and skills",
+      "url": "https://www.bensbites.com/p/bens-builds-2",
+      "published_at": "2026-03-21T10:24:41+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substackcdn.com/image/fetch/$s_!DxS2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F231b1d94-4eee-4678-95e2-091a4a32f560_2928x1534.png",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
     {
       "id": "f99ef41a055987c2",
       "title": "How 81K people really feel about AI",
@@ -21,6 +38,23 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/656748cf-457a-49da-8d63-08db8dc450ad/anthropicsurvey.jpg",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
+      "id": "627073b5a4241e21",
+      "title": "What makes a good AGENTS.md?",
+      "summary": "run Claude Cowork from your mobile phone",
+      "url": "https://www.bensbites.com/p/what-makes-a-good-agentsmd",
+      "published_at": "2026-03-19T14:02:51+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/f6b38448-2a56-478b-90fb-03fabcbbaf01_1536x1024.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -55,6 +89,40 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/28661702-8c8e-4a1f-ab83-a288701f873d/export__1_.png",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
+      "id": "06d6d59d0cb4fe73",
+      "title": "Nvidia loves OpenClaw",
+      "summary": "the era of vibe-coding is over",
+      "url": "https://www.bensbites.com/p/nvidia-loves-openclaw",
+      "published_at": "2026-03-17T14:02:29+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/630b97d4-c031-4aec-84f0-47ae73c872a6_2318x1136.png",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
+      "id": "88b190221e77d938",
+      "title": "this is a new format i'd like to try",
+      "summary": "do you prefer this or the original?",
+      "url": "https://www.bensbites.com/p/this-is-a-new-format-id-like-to-try",
+      "published_at": "2026-03-17T13:33:34+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substackcdn.com/image/fetch/$s_!YuX2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7e558c31-8bdd-4d61-a571-b209b6189f59_480x433.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
