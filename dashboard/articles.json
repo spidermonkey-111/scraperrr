@@ -1,12 +1,12 @@
 {
-  "scraped_at": "2026-03-28T07:00:08.706288+00:00",
+  "scraped_at": "2026-03-29T07:00:04.552513+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
     "Reddit/r/artificial",
     "Reddit/r/MachineLearning"
   ],
-  "total_articles": 8,
+  "total_articles": 5,
   "articles": [
     {
       "id": "24d65f3c90f73cdc",
@@ -21,23 +21,6 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/349d19d5-e642-48af-8895-f0a8e84714ad/tribe2.jpg",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "89bfac01ca95cdd6",
-      "title": "A peek inside CLI tools",
-      "summary": "No more funny videos at OpenAI",
-      "url": "https://www.bensbites.com/p/a-peek-inside-cli-tools",
-      "published_at": "2026-03-26T14:03:22+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/0a62d663-92de-4ada-aa93-27c0f889c0dc_1024x572.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -77,23 +60,6 @@
       "is_saved": false
     },
     {
-      "id": "5dc277f4ad35f54c",
-      "title": "Agents should interview you",
-      "summary": "is claude trying to become openclaw?",
-      "url": "https://www.bensbites.com/p/agents-should-interview-you",
-      "published_at": "2026-03-24T14:01:06+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/915f7352-e0fd-4573-ac13-b642120b28ca_1024x572.png",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
       "id": "d7b5e3958702a6aa",
       "title": "Anthropic's Claude gets remote control",
       "summary": "PLUS: Free up space on your computer with Claude",
@@ -123,23 +89,6 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/4b9f8d0b-02ac-4ae1-920c-7910959b0e5f/terafab.jpg",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "e023732689dd8f6b",
-      "title": "Ben's Builds: #2",
-      "summary": "my stack, instructions, tools and skills",
-      "url": "https://www.bensbites.com/p/bens-builds-2",
-      "published_at": "2026-03-21T10:24:41+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://substackcdn.com/image/fetch/$s_!DxS2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F231b1d94-4eee-4678-95e2-091a4a32f560_2928x1534.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
