@@ -1,13 +1,30 @@
 {
-  "scraped_at": "2026-03-29T07:00:04.552513+00:00",
+  "scraped_at": "2026-03-30T07:00:06.803821+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
     "Reddit/r/artificial",
     "Reddit/r/MachineLearning"
   ],
-  "total_articles": 5,
+  "total_articles": 8,
   "articles": [
+    {
+      "id": "2b4d47993f01c711",
+      "title": "An exclusive Q&A with alibaba.com's Kuo Zhang",
+      "summary": "How Accio Work is turning agent teams into operators across real-world workflows.",
+      "url": "https://www.therundown.ai/p/an-exclusive-q-a-with-alibaba-com-s-kuo-zhang",
+      "published_at": "2026-03-29T10:00:00+00:00",
+      "source": "The AI Rundown",
+      "source_icon": "⚡",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/b7e12ae8-96be-4bf8-bfbc-b7a74b1b50d8/01_cover.png",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
     {
       "id": "24d65f3c90f73cdc",
       "title": "Meta's new open-source brain AI",
@@ -21,6 +38,23 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/349d19d5-e642-48af-8895-f0a8e84714ad/tribe2.jpg",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
+      "id": "89bfac01ca95cdd6",
+      "title": "A peek inside CLI tools",
+      "summary": "No more funny videos at OpenAI",
+      "url": "https://www.bensbites.com/p/a-peek-inside-cli-tools",
+      "published_at": "2026-03-26T14:03:22+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/0a62d663-92de-4ada-aa93-27c0f889c0dc_1024x572.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -55,6 +89,23 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/dad47cc7-8a57-4e6c-b36b-f88885e1a8c1/sorax.jpg",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
+      "id": "5dc277f4ad35f54c",
+      "title": "Agents should interview you",
+      "summary": "is claude trying to become openclaw?",
+      "url": "https://www.bensbites.com/p/agents-should-interview-you",
+      "published_at": "2026-03-24T14:01:06+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/915f7352-e0fd-4573-ac13-b642120b28ca_1024x572.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
