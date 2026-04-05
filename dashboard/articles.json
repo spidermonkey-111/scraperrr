@@ -1,12 +1,12 @@
 {
-  "scraped_at": "2026-04-04T07:00:05.536251+00:00",
+  "scraped_at": "2026-04-05T07:00:03.827436+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
     "Reddit/r/artificial",
     "Reddit/r/MachineLearning"
   ],
-  "total_articles": 8,
+  "total_articles": 6,
   "articles": [
     {
       "id": "f99bd46194c2e7f7",
@@ -21,23 +21,6 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/42822840-14a2-4782-ae54-f6f13c8ba536/medvi.jpg",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "0d9452860a35e576",
-      "title": "Inside the leaked Claude Code files",
-      "summary": "Docs as files, a new markdown editor and April fools",
-      "url": "https://www.bensbites.com/p/inside-the-leaked-claude-code-files",
-      "published_at": "2026-04-02T13:02:42+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/fe4b01d2-0da9-4676-8b58-5eeb5b9af8d1_1728x986.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
@@ -72,23 +55,6 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/a159503b-dab5-444b-9be4-225a24e8e486/export__6_.png",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "e89415ef187b350f",
-      "title": "One breach after another",
-      "summary": "separate and sandbox your agent's access",
-      "url": "https://www.bensbites.com/p/one-breach-after-another",
-      "published_at": "2026-03-31T13:10:44+00:00",
-      "source": "Ben's Bites",
-      "source_icon": "🍪",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/cf163c36-660b-41cf-9c34-9f17b61fc7cd_1948x996.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
