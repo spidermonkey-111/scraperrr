@@ -1,13 +1,47 @@
 {
-  "scraped_at": "2026-04-08T07:00:03.135069+00:00",
+  "scraped_at": "2026-04-09T07:00:03.991412+00:00",
   "sources_checked": [
     "Ben's Bites",
     "The AI Rundown",
     "Reddit/r/artificial",
     "Reddit/r/MachineLearning"
   ],
-  "total_articles": 5,
+  "total_articles": 7,
   "articles": [
+    {
+      "id": "eef08593b2280878",
+      "title": "Anthropic's new AI is too powerful for the world",
+      "summary": "PLUS: Get to inbox zero with this Claude prompt",
+      "url": "https://www.therundown.ai/p/anthropic-new-ai-is-too-powerful-for-the-world",
+      "published_at": "2026-04-08T09:00:00+00:00",
+      "source": "The AI Rundown",
+      "source_icon": "⚡",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/4392c1b0-9630-4baa-b5c5-3cd7ddeb057a/glasswing.jpg",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
+      "id": "3b8d5c897564ab0b",
+      "title": "No Claude for Claws",
+      "summary": "in 3 months, Anthropic added $6B ARR",
+      "url": "https://www.bensbites.com/p/no-claude-for-claws",
+      "published_at": "2026-04-07T13:15:47+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/ad7fffbe-f276-4fd9-ad4e-9309f410f1bd_2848x1504.jpeg",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
     {
       "id": "1ca19a4e1053a1bc",
       "title": "Sam Altman's new 'social contract' for AI",
@@ -60,6 +94,23 @@
       "is_saved": false
     },
     {
+      "id": "0d9452860a35e576",
+      "title": "Inside the leaked Claude Code files",
+      "summary": "Docs as files, a new markdown editor and April fools",
+      "url": "https://www.bensbites.com/p/inside-the-leaked-claude-code-files",
+      "published_at": "2026-04-02T13:02:42+00:00",
+      "source": "Ben's Bites",
+      "source_icon": "🍪",
+      "tags": [
+        "AI",
+        "Newsletter"
+      ],
+      "image_url": "https://substack-post-media.s3.amazonaws.com/public/images/fe4b01d2-0da9-4676-8b58-5eeb5b9af8d1_1728x986.png",
+      "reddit_score": null,
+      "reddit_comments": null,
+      "is_saved": false
+    },
+    {
       "id": "6b9e0bd256307af9",
       "title": "Dorsey makes the AI case against managers",
       "summary": "PLUS: Build a productivity tool with Replit",
@@ -72,23 +123,6 @@
         "Newsletter"
       ],
       "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/be8a1bee-c699-427c-ac73-c9c73343e019/blockdorsey.jpg",
-      "reddit_score": null,
-      "reddit_comments": null,
-      "is_saved": false
-    },
-    {
-      "id": "1582ea81d269b60e",
-      "title": "OpenAI’s new $122B funding, 'superapp'",
-      "summary": "PLUS: Upgrade your AI coding workflow with this free context tool",
-      "url": "https://www.therundown.ai/p/openai-new-122b-funding-superapp",
-      "published_at": "2026-04-01T09:00:00+00:00",
-      "source": "The AI Rundown",
-      "source_icon": "⚡",
-      "tags": [
-        "AI",
-        "Newsletter"
-      ],
-      "image_url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/a159503b-dab5-444b-9be4-225a24e8e486/export__6_.png",
       "reddit_score": null,
       "reddit_comments": null,
       "is_saved": false
